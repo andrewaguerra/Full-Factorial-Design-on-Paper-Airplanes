@@ -1,0 +1,358 @@
+---
+title: "Paper Airplanes Full Factorial Design"
+author: "Andrew Guerra"
+date: "2025-06-08"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+__Background__
+
+Paper airplane design is a practice that has evolved a wide variety of methods which all aim to improve flight duration and consistency. From different folding patterns to adding items and removing parts of the paper itself, paper airplane designs are limitless. At first glance, paper airplanes can often be overlooked as simple structures that oversimplify the dynamics of man-made airplanes, often used as toys for entertainment. While it is true that paper airplanes have less complex structures than man-made airplanes, much of what improves performance of paper airplanes has applications towards the improvement of man-made airplanes. In fact, both paper and man-made airplanes heavily rely on the physics of aerodynamics. 
+
+One of the most prominent factors in flight performance is weight distribution, as previously explored in paper plane aerodynamics (Ismail et al., 2021). In this study of paper airplane design, researchers used different folding techniques and found that a wider plane (Wide Stunt Fold) was most efficient in its design. This design entails wider wings and a linear base that enhances weight distribution of the plane. For the purpose of this experiment, we will use the Classic Dart paper airplane design as outlined in previous paper airplane studies (Schlueter, 2008). 
+
+__Purpose__
+
+Our experiment's manipulation of interest is weight distribution. One common modification in paper airplanes is the addition of paperclips to alter the weight and balance of the plane. To further investigate the relationship of weight distribution and flight performance, we aim to investigate how adding paperclips to different areas of the plane affect flight performance. Performance of the plane will be measured in flight distance for this experiment.
+
+By placing paperclips on a paper plane in different areas, we aim to gain a better understanding of how weight distribution affects flight distance. Specifically, this study uses a full factorial design to evaluate the effects of different paperclip placement configurations. As a result, this study aims to examine the effects of three different, two-leveled factors. With each factor representing the presence or absence of a paperclip on either the rear, middle, or front of a plane, we aim to gain insight as to how the interaction of these paperclips can either improve or impair flight distance. By using 3 different paperclips that are either included or not, we have $2^3=8$ possible combinations for these factors. Thus, our experiment runs 8 possible configurations. 
+
+By analyzing both main and interaction effects, the study aims to identify which paperclip placement, or combination, maximizes flight distance. Furthermore, the results offer insights into how simple design modifications affect performance, reinforcing broader concepts in physics and engineering such as force balance, torque, and flight stability (Alonso et al., 2009). Since real-world aircraft are highly sensitive to changes in balance and mass allocation, this experiment offers a simplified framework for examining those same principles at a smaller scale (Torenbeek, 2013).
+
+## Methods
+
+__Data Collection__
+
+The objective of this study is to determine the most optimal combination of paperclip configurations at improving flight distance. To investigate the effect of paperclip placement on flight distance, we incorporated a $2^3$ full factorial design. 
+
+Before carrying out the experiment, a sample size calculation was administered to ensure sufficient power in our data. Thus, we ran a pilot study under the same materials and environment, as stated next, to ensure validity of our results. After carrying out the pilot study, we had an estimated minimum sample size and ran the experiment with at least 80% power.
+
+All flights were conducted at Girvetz Hall at UC Santa Barbara. In Girvetz Hall, hall floor tiles measured at exactly 1ft x 1ft, which improved ease of measurement for all flights. Since flights were conducted in an indoor setting, external conditions, such as wind, were controlled for in our results. Flight distance was measured with a 10ft measuring tape. As a result, distance was measured to the nearest half-inch and later converted to centimeters. To control for technique in each flight, each flight was thrown at eye-level with both feet on the edge of a floor tile. Throws were administered by the same individual to maintain consistency. In the Pilot Study, 3 throws were conducted ($n=3,N=24$). After our sample size calculation, we carried out the study with 5 replicates per condition ($n=5,N=40$). 
+
+```{r, out.width="30%", fig.align='center', echo=FALSE, fig.cap="Tools Used (left), Where Planes Were Thrown (right)", fig.show='hold'}
+knitr::include_graphics("Clips_Measure.pdf")
+knitr::include_graphics("Girvetz_Hall.pdf")
+```
+
+For this experiment, we used 8.5" x 11" printer paper along with standard metal clips that measured at 1.25" x 0.25". According to the manufacturer' website _uline_, paperclips weighed in at approximately 0.96 lbs. To measure flight distance, we used the same paper airplane model throughout. The simple and robust dart-style model design was used to ensure consistency in shape, weight distribution, and surface area. Airplanes in both the pilot study and actual study were folded by the same individual to control for variability in construction of the plane itself.
+
+```{r, out.width="30%", fig.align='center', echo=FALSE, fig.cap="Classic Dart Airplane Design"}
+knitr::include_graphics("airplane_design.pdf")
+```
+
+Each of our three factors had two levels, resulting in a $2^3=8$ treatment full factorial design. The eight configurations included:
+
++ Factor 1: No Paperclips
++ Factor 2: Back Paperclip
++ Factor 3: Middle Paperclip
++ Factor 4: Front Paperclip
++ Factor 5: Front & Middle Paperclips
++ Factor 6: Front & Back Paperclips
++ Factor 7: Middle & Back Paperclips
++ Factor 8: Front, Middle, & Back Paperclips
+
+__Statistical Methods__
+
+The primary statistical analysis employed a one-way ANOVA to test whether paperclip configuration significantly affected flight distance across the eight paperclip conditions. This approach was chosen because it allows for simultaneous comparison of multiple group means. Following the result of this ANOVA test, pairwise comparisons were conducted using Tukey's Honestly Significant Difference (HSD) test to identify which specific treatment combinations differed significantly from one another. To further control for multiple comparisons, a Bonferroni correction was used for a more conservative significance level. Additionally, a secondary one-way ANOVA was performed to assess whether trial order had any systematic effect on flight performance, ensuring that any observed treatment effects were not confounded by temporal factors. All analyses were conducted using R statistical software, with significance evaluated at 0.05 for primary tests.
+
+The validity of ANOVA requires a few assumptions. Firstly, the residuals found in our data must be normally distributed. Additionally, we must have equal variance in residuals across our data, with all observations being independent and identically distributed. To account for independence, all flights were thrown by the same individual using consistent technique and randomized trial order within each treatment condition. Normality and homoscedasticity assumptions were assessed through multiple diagnostic approaches, including Q-Q plots, histograms of residuals, residuals versus fitted values plots. Objective testing was done through the Shapiro-Wilk test.
+
+__Technical Issues__
+
+Several minor technical issues arose during the data collection process. Although efforts were made to ensure a consistent throwing technique across all trials, slight variations in the angle, force, or release point of each throw may have introduced variability in the measured flight distances. Additionally, in a few instances, paper airplanes veered off course and collided with walls before landing. These trials were still recorded, which may have affected overall results. Additionally, measurement was subjected to human error. Since flight distance was measured manually using a tape measure from the nearest tile, this measurement may have been slightly inaccurate especially since measurement were rounded to the nearest half-inch. Further, the rounding and conversion of measurements does not accurately reflect true flight distance. To minimize this, measurements were recorded by the same individual throughout the experiment, though the individuals own error in measurements could not be. Finally, minor differences in how securely the paperclips were attached may have affected the planes’ balance and flight behavior, though care was taken to place each paperclip in the same orientation and location across trials.
+
+## Results
+
+__Sample Size Calculation__
+
+Before conducting the experiment, we ran a pilot study where each configuration was flown a total of three times ($n=3, N=24$). Upon each throw, results were measured to the nearest half inch and input onto a spreadsheet. After all trials were completed, all results were translated to centimeters.
+
+```{r, message=FALSE}
+library(dplyr)
+plane_pilot <- read.csv("plane_pilot.csv")
+
+plane_pilot <- plane_pilot %>% 
+  rowwise() %>% 
+  mutate(mean=round(mean(unlist(c(trial.1, trial.2, trial.3))), 2),
+              sd=round(sd(unlist(c(trial.1, trial.2, trial.3))), 2)) %>% 
+  ungroup()
+knitr::kable(plane_pilot, 
+             caption="Flight Distance by Paperclip Condition (Pilot)")
+```
+
+As evident by our group means, flight distance did tend to vary by group. With these data, our pilot study had sufficient trial runs to determine the minimum sample size requirement for a robust analysis. Based on these results, we conducted sample size calculations to determine the minimum sample size required to produce statistically significant results with at least 0.8 power. A power of 0.8 would suggest that our experimental design would detect a true effect in paperclips (assuming they do affect flight distance) 80% of the time. 
+
+To create a sample size that is sensitive to variability cause by both known and unknown variables, we ran two additional models with scaled standard errors. We scaled the standard error of our pilot study by 6 and 10 to investigate each iteration separately. This was done to account for more variability to better visualize how sample size approximations would change. Our results were as follows:
+
+```{r, out.width='70%', fig.show='hold', fig.align='center'}
+library(ggplot2)
+source("power_factorial_23.R")
+set.seed(123)
+
+# Pilot Data
+beta_mean <- c(421.64, 394.12, 264.60, 532.13, 399.23, 439.00, 580.81, 464.82)
+beta_sd <- c(4.40, 111.31, 211.16, 80.53, 43.23, 159.80, 33.42, 79.44)
+base_se <- beta_sd / sqrt(3)
+replicates <- 2:10
+
+# SE * 1
+beta_se <- base_se
+power1 <- NA
+for(i in 1:length(replicates)){
+  power1[i] <- power_factorial_23(beta_mean, beta_se, replicates[i])
+}
+
+# SE * 6
+beta_se <- base_se * 6
+power2 <- NA
+for(i in 1:length(replicates)){
+  power2[i] <- power_factorial_23(beta_mean, beta_se, replicates[i])
+}
+
+# SE * 10
+beta_se <- base_se * 10
+power3 <- NA
+for(i in 1:length(replicates)){
+  power3[i] <- power_factorial_23(beta_mean, beta_se, replicates[i])
+}
+
+# DF
+all_power <- data.frame(
+  power = c(power1, power2, power3),
+  beta_se = factor(rep(c("1", "6", "10"), each = length(replicates))),
+  replicates = rep(replicates, 3)
+)
+
+# Graph
+ggplot(all_power, aes(x = replicates, y = power,
+                      group = beta_se, color = beta_se)) +
+  geom_point() + geom_line() +
+  labs(
+    title = "Estimated Power by SE and Replicates (2^3 Pilot)",
+    x = "Replicates",
+    y = "Power") + theme_minimal()
+```
+
+As seen by our graph, our pilot study shows a power of 1.0 after just 2 replicates. To control for potential variability that could arise outside the pilot study, the standard error of the pilot study was scaled by factors of 6 and 10. This was done to account for variability that could arise from such a limited sample, such as inconsistent throwing or degradation of the paper airplane itself. After scaling the standard error by 10, we see that having just 2 replicates would give us a weak power of about 0.35. However, this power increases to a value greater than 0.8 after just 5 full replicates. Thus, this model indicated that approximately 5 replicates per condition would be needed to maintain sufficient power. As a result, we proceeded with 5 replicates to ensure robustness of our findings.
+
+__Observations__
+
+With 5 replicates per condition, our sample had a total of 40 observations ($n=5,N=40$). After recording each results into a CSV file, we saw the following observations.
+
+```{r}
+plane_study1 <- read.csv("plane_study.csv")
+
+# Mean & Sd
+plane_study <- plane_study1 %>% 
+  rowwise() %>% 
+  mutate(mean=round(mean(unlist(c(trial.1, trial.2, trial.3,
+                                  trial.4, trial.5))), 2),
+              sd=round(sd(unlist(c(trial.1, trial.2, trial.3,
+                                   trial.4, trial.5))), 2)) %>% 
+  ungroup()
+knitr::kable(plane_study, 
+             caption="Flight Distance by Paperclip Condition")
+```
+
+At first glance, our data shows that group 1 (no paperclips) has the highest average flight distance. The next highest flight distance is group 7 (middle and back paperclip), though group 7's average distance about 150 centimeters less than group 1. Overall, we have reason to suspect that group 1 could potentially be most effective. To better illustrate the relationship between groups and flight distance, we constructed both a box-plot and line graph.
+
+```{r, fig.show='hold', out.width='50%', message=FALSE}
+library(tidyverse)
+plane_df <-  plane_study %>%
+  pivot_longer(
+    cols = starts_with("trial"),
+    names_to = "trial",
+    values_to = "distance"
+    )
+
+# Group Box-plot
+plane_df$group <- as.factor(plane_df$group)
+ggplot(plane_df, aes(x=group, y=distance, fill=group)) +
+  geom_boxplot( color = "black") +
+  labs(
+    title = "Flight Distance by Paperclip Condition",
+    x = "Paperclip Condition (Group)",
+    y = "Flight Distance (cm)"
+  ) + theme_minimal()
+
+# Line Plot by Group
+ggplot(plane_df, aes(x=trial, y=distance, group=group, color=group)) +
+  geom_line() + geom_point(size = 2) + facet_wrap(~ group, ncol = 4) +  
+  scale_color_brewer(palette = "Dark2") +
+  labs(title = "Flight Distance Across Trials by Condition",
+       x = "Trials", y = "Flight Distance (cm)", color = "Group") +
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+# NOTE: AI used here to remove the x-axises for individual graphs
+```
+
+Based on our box-plot (left), we see that group 1 has the highest average flight distance. Conversely, group 2 has the lowest average, suggesting that placing a paperclip on the back of the paper airplane negatively affects the plane considerably. 
+
+Furthermore, variation of data varied greatly by group. Group 5 (front & middle paperclip) had the lowest variation out of all groups, though 2 outliers were present on either extremes. The group with the greatest variation was group 3 (front paperclip), suggesting that placing the paperclip at the front of the paper airplane makes the plane's trajectory much more volatile. Overall, flight patterns differed by group, clearly outlining the need for further statistical testing.
+
+Using our line graph (right), we were able to better visualize trends in data specific to each condition, where a few notable trends were found. Group 1's results were consistently better than nearly every other Group's trials, with only Group 3's last two trials improving similarly to Group 1. Furthermore, groups 5, 6, 7, and 8 all had similar trends in data, suggesting that these may not produce significant results from statistical analysis. Group 2's results were consistently lower in flight distance. Based on all these graphs, we have further evidence showing that placing the paperclip in the rear of the paper airplane is inferior to all other conditions.
+
+Additionally, we found that each group's 5th trial tended to be the most unpredictable. For much of these graphs, the ongoing trends often ceased or even changed completely (Graphs 1, 2, 6, 8). In other words, it appears that trials had a subtle effect on flight distance, potentially skewing our results when considering the impact of paperclip condition. The increase in variation of trials could be the result of external effects in our results. To better visualize the ongoing trends, we created a box-plot that compared flight distance by trials instead of conditions.
+
+```{r, fig.align='center', fig.show='hold', out.width='60%'}
+# Boxplot
+ggplot(plane_df, aes(x = trial, y = distance)) +
+  geom_boxplot(fill="skyblue", color="black") +
+  labs(title = "Flight Distance by Trial", 
+       x = "Trial", y = "Flight Distance (cm)") + 
+  theme_minimal()
+```
+Based on this box-plot, we see that while variation of our data does increase from trial 1 to trial 5, the median of every trial suggests that trial number has no significant effect on flight distance. For an objective analysis, we ran an ANOVA on flight distance by trial.
+
+```{r}
+trial_lm <- lm(distance ~ trial, data=plane_df)
+trial_aov <- aov(trial_lm)
+trial_sum <- summary(trial_aov)
+
+knitr::kable(trial_sum[[1]], digits=2)
+```
+
+At a significance level $\alpha=0.05$, we found that trial number's effect on flight distance is not statistically significant with a p-value of $p=0.91$ (F(4, 35)=0.25). Therefore, we have evidence suggesting that trial order did not impact performance substantially.
+
+Upon concluding that trial order has no substantial effect on flight distance, we created an interaction plot to observe the effect of paperclip conditions on flight distance.
+
+```{r, fig.align='center', fig.show='hold', out.width='60%'}
+plane_df1 <- plane_df %>%
+  mutate(group = as.integer(group)) %>%
+  mutate(
+    rear = ifelse(group %in% c(2, 6, 7, 8), 1, 0),
+    middle = ifelse(group %in% c(3, 5, 7, 8), 1, 0),
+    front = ifelse(group %in% c(4, 5, 6, 8), 1, 0)
+  )
+
+plane_df2 <- plane_df1 %>%
+  group_by(rear, middle, front) %>%
+  summarise(distance = mean(distance), .groups = "drop")
+
+ggplot(plane_df2, aes(x = factor(front), y = distance, 
+                      color = factor(rear), group = rear)) +
+  geom_line() + geom_point() +
+  facet_wrap(~ middle, labeller = label_both) +
+  labs(
+    title = "Interaction Plot: Mean Flight Distance by Paperclip Position",
+    x = "Front Clip (0 = No, 1 = Yes)",
+    y = "Mean Flight Distance (cm)",
+    color = "Rear Clip"
+  ) + theme_minimal()
+
+```
+
+Based on the interaction plot, we see that mean flight distance is affected differently by paperclip conditions. For example, when the middle clip is absent, we see an empty paperclip perform worse when adding a front clip. Conversely, having no middle clip with a rear clip improves after adding the front clip. When the middle clip is present, the plane with a rear clip performs worse after adding the front clip. Conversely, the plane with a middle clip and no rear clip performs about the same even with the front clip. This suggests that the effect of a middle clip on flight distance depends on the presence of a front clip, with the largest distance observed when neither clip is present, indicating a potential negative combined effect of adding clips. Without any objective analysis, it appears that no paperclips is most optimal. On the other hand, having only the rear clip is most suboptimal.
+
+__Analysis__
+
+To gain an objective analysis on whether any paperclip configuration has a statistically significant effect on flight distance, we first ran a one-way ANOVA test.
+
+```{r}
+plane_data <- plane_study %>%
+  pivot_longer(cols = starts_with("trial"),
+               names_to = "trial",
+               values_to = "distance")
+
+plane_data$group <- factor(plane_data$group)
+plane_lm <- aov(distance ~ group, data = plane_data)
+anova_df <- as.data.frame(summary(plane_lm)[[1]])
+
+knitr::kable(anova_df, digits=5, caption="Flight Distance by Group (ANOVA)")
+```
+
+At an $\alpha=0.05$ significance level, our ANOVA results suggest that paperclip condition has a statistically significant effect on flight distance with a p-value $p=0.00664$ (F(7, 32)=3.51). This means that at least one of our eight paperclip conditions differs significantly in average flight distance compared to the others.
+
+For a more conservative comparison, we calculated the Bonferroni correction.
+
+```{r}
+alpha <- 0.05
+test <- 7
+bonferroni <- alpha/test
+
+knitr::kable(bonferroni, caption="Our Bonferroni Correction Level:")
+```
+
+Based on our corrected level of 0.0071, we still reject our Null Hypothesis and conclude that paperclip configuration has a statistically significant effect on flight distance ($p=0.00664$). To understand which groups lead to the rejection of our Null Hypothesis, we ran the Tukey's Honestly Significant Test for pairwise comparisons.
+
+```{r}
+tukey_res <- TukeyHSD(plane_lm)
+tukey_df <- as.data.frame(tukey_res$group)
+
+knitr::kable(tukey_df, digits = 4, caption = "Tukey HSD Pairwise Comparisons")
+```
+
+Pairwise comparisons using the Tukey-HSD test indicated that Group 2 (back paperclip) had significantly shorter flight distances compared to Group 1 (no paperclips), with a mean difference of –322.58 cm ($p = 0.0017$), which remained significant after applying the Bonferroni correction of 0.0071. Additionally, Group 6 (front & middle paperclips) also flew significantly shorter distances than Group 1, with a mean difference of –266.95 cm ($p = 0.0140$), which was significant at 0.05 but failed to remain significant with the Bonferroni correction of 0.0071. No other group comparisons were statistically significant at either level.
+
+__Model Checking__
+
+To ensure that our model adhered to the statistical assumptions stated previously, we created various plots on residuals.
+
+```{r, fig.show='hold', out.width='50%'}
+# Q-Q plot
+qqnorm(resid(plane_lm))
+qqline(resid(plane_lm))
+
+# Histogram
+hist(resid(plane_lm), breaks = 10, main = "Histogram of Residuals", xlab = "Residuals")
+
+# Structure
+x <- 1:length(plane_lm$residuals)
+plot(plane_lm$residuals ~ x, xlab='order', ylab='residuals',
+main='Structure of Residuals')
+
+# Residuals vs. Fitted
+plot(plane_lm$residuals ~ plane_lm$fitted.values,
+xlab="fitted values", ylab="residuals", cex.lab=2,
+main="Residuals vs. fitted values", cex.main=2)
+```
+
+Based on our Q-Q Plot (top-left), we have evidence suggesting that our residuals adhere to the assumption of normality. That is, the residuals of our airplane throws are randomized and spread fairly equally across all trials. 
+
+Based on the Histogram of Residuals (top-right), the distribution is somewhat centered around zero, which is a good sign for a linear model. However, the distribution appears slightly skewed to the right, with a longer tail towards positive residuals (up to 300 cm) and fewer negative residuals (down to -200 cm). Ideally, residuals should be roughly symmetrically distributed for a well-fitted model. Overall, there is no clear violation of any assumptions, though the conditions are not ideal.
+
+We also plotted a graph comparing the structure of our residuals (bottom-left). Based on this graph, our residuals appear to be randomly distributed. Therefore, we have reason to believe our residuals share equal variance.
+
+Finally, we compared Residuals with Fitted Values (bottom-right). When comparing our residuals with fitted values, we see that there appears to be a slight pattern in comparisons. This suggests that our residuals potentially violate normality.
+
+With some slight suspicions against our assumptions, we conducted the Shapiro-Wilk Test to assess whether we can assume our residuals are normally distributed.
+
+```{r}
+plane_shap <- shapiro.test(plane_lm$residuals)
+shapiro_res <- data.frame(
+  Statistic = round(plane_shap$statistic, 3),
+  P_Value = round(plane_shap$p.value, 4)
+)
+knitr::kable(shapiro_res)
+```
+With a W statistic of W=0.964 and a p-value of p=0.2352, we fail to reject our Null Hypothesis and conclude that our data follows a Normal Distribution. However, we still note that our p-value is relatively low, suggesting some subtle non-normality in our data.
+
+Upon concluding our model checking, we have substantial evidence that our model adheres to all statistical assumptions. Therefore, we can draw meaningful assumptions from our data.
+
+## Discussion
+
+After carrying out our full factorial design to investigate the effect of paperclip conditions on flight distance, we found statistically significant evidence that paperclips play a role in flight distance. We conducted a one-way ANOVA and found that and were able to confirm that at least one paperclip condition was statistically significant (F(7,32)=3.51, p=0.00664). To investigate exactly which groups produced significant results, we conducted the Tukey HSD test and found that comparisons between Group 2 and Group 1 ,-322.58 cm less than Group 1(p = 0.0017), as well as Group 6 with Group 1 (-266.95 cm, p = 0.0140) were significant at the 0.05 significance level. Upon considering the Bonferroni corrected level, only Group 2 remained significant. Overall, both these results provided strong evidence to indicate that the absence of paperclips yields the longest average flight distance at 654.56 cm. In general, additional weights appeared to negatively affect aerodynamic performance.
+
+Model checking provided further insights into the model’s fit and assumptions. While some of these plots adhered closely to our assumptions, others suggested possible heteroscedasticity or non-linearity not fully accounted for by the linear model. To confirm our suspicions, we ran the Shapiro-Wilk test and found that we failed to reject normality. Although the Shapiro-Wilk test indicated no significant departure from normality (p = 0.2352), the slight right skew in residuals and observed outliers suggest some caution when interpreting results. These diagnostic observations suggest that future replications should investigate whether adding multiple predictors improves the model. Additionally, the transformation of some parameters may be necessary to produce a model that strongly meets all assumptions.
+
+The experiment underscores fundamental aerodynamic principles, demonstrating how weight distribution affects flight distance and stability. These concepts are more heavily used in aircraft engineering, where torque and force balance critically influence performance (Alonso et al., 2009). However, the study’s limitations warrant consideration. Conducting the experiment indoors at Girvetz Hall controlled for wind; however, the use of a single thrower introduced potential variability due to differences in throwing angle, force, and release technique. Manual measurement rounding and inconsistencies in paperclip attachment further contributed to data variability. Additionally, occasional veering or collisions with walls likely skewed distance measurements without accounting for more volatile plane conditions.
+
+Future research should aim to include multiple throwers and outdoor testing environments to enhance generalizability. Employing more precise measurement instruments or automated tracking could reduce human error. Overall, these findings provide meaningful insights into how subtle physical modifications affect flight performance.
+
+\newpage
+
+## References
+
+Alonso, Juan J., Patrick LeGresley, and Victor Pereyra. "Aircraft design optimization." Mathematics and Computers in Simulation 79.6 (2009): 1948-1958.
+
+Ismail, Noor Iswadi, et al. "Aerodynamic performances of paper planes." Journal of Advanced Research in Fluid Mechanics and Thermal Sciences 77.1 (2021): 124-131.
+
+Schlueter, Joerg U. "Aerodynamic study of the dart paper airplane for micro air vehicle application." Proceedings of the Institution of Mechanical Engineers, Part G: Journal of Aerospace Engineering 22.
+
+Torenbeek, Egbert. Advanced aircraft design: conceptual design, analysis and optimization of subsonic civil airplanes. John Wiley & Sons, 2013.
